@@ -1,9 +1,9 @@
 package datastr;
 
 public class MyNodeS<T> {
-    T data; //mainīgais, kurā glabājas vērtība
-    MyNodeS next; //norāde uz nākamo elementu
-    T previous; //mainīgais kā norāde uz iepriekšējo mezglu
+    private T data; //mainīgais, kurā glabājas vērtība
+    private MyNodeS next = null; //norāde uz nākamo elementu
+    private MyNodeS previous = null; //mainīgais kā norāde uz iepriekšējo mezglu
 
     //GETTERS
     public T getData() {
@@ -12,34 +12,33 @@ public class MyNodeS<T> {
     public MyNodeS getNext() {
         return next;
     }
-    public T getPrevious() {
+    public MyNodeS getPrevious() {
         return previous;
     }
     //SETTERS
-    public void setData(T data) {
-        this.data = data;
+    public void setData(T inputData) {
+        if(inputData!=null){
+            data = inputData;
+        } else {
+            data = (T) new Object();
+        }
+
     }
-    public void setNext(MyNodeS next) {
-        this.next = next;
+    public void setNext(MyNodeS inputNext) {
+        next = inputNext;
     }
-    public void setPrevious(T previous) {
-        this.previous = previous;
+    public void setPrevious(MyNodeS inputPrevious) {
+        previous = inputPrevious;
     }
     //CONSTRUCTORS
     //argument constructor
     MyNodeS(T data){
         setData(data);
-        next = null;
-        previous = null;
     }
     //TOSTRING
     @Override
-    public String toString() {
-        return "MyNodeS{" +
-                "data=" + data +
-                ", next=" + next +
-                ", previous=" + previous +
-                '}';
+    public String toString(){
+        return "" + data;
     }
 
 }
