@@ -4,19 +4,10 @@ import datastr.MyNodeS;
 import datastr.MyStack;
 
 import model.Student;
-import model.Course;
-import model.CourseGradeType;
-import model.Degree;
 import model.Faculty;
-import model.Grade;
-import model.Person;
-import model.Professor;
 
 public class MainService {
     public static void main(String[] args) throws Exception {
-    /*Izveidot MainService klasi, kurā main funkcijā veikt MyStack klases pārbaudi.
-    * Demonstrācijai izveidot 2 stekus - vienu ar skaitliska tipa elementiem, otru ar
-    * Student tipa elementiem. Parādīt MyStack klasē izveidoto funkciju darbību abu steku gadījumos (0.2 balles).*/
         MyNodeS number1 = new MyNodeS(20);
         MyNodeS number2 = new MyNodeS(30);
         MyNodeS number3 = new MyNodeS(40);
