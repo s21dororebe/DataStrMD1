@@ -1,12 +1,8 @@
 package datastr;
 
-import java.util.Arrays;
-
 public class MyStack<T> {
-    //TODO length pielietot push() un pop() funkcijās)
-
     private MyNodeS topNode;
-    private int length = 0;
+    private int length = -1;
 
     //GETTERS
     public MyNodeS getTopNode() {
@@ -21,7 +17,7 @@ public class MyStack<T> {
     }
     //CONSTRUCTORS
     //no argument constructor
-    MyStack(){
+    public MyStack(){
         MyNodeS topNode = new MyNodeS<>(null);
         length++;
     }
@@ -49,13 +45,17 @@ public class MyStack<T> {
         return length;
     }
 
-//    Izveidot print() funkciju, kas izprintē steka elementus;
-//    Izveidot funkciju, kas veic steka iztukšošanu;
-
     public void push(MyNodeS inputElement) throws Exception {
         if(!isFull()){
-            topNode.setNext(new MyNodeS<>(topNode));
-            setTopNode(inputElement);
+            if(isEmpty()) {
+                setTopNode(inputElement);
+                length++;
+            } else {
+                MyNodeS newElement = new MyNodeS<>(inputElement);
+                newElement.setNext(topNode);
+                setTopNode(newElement);
+                length++;
+            }
         } else {
             throw (new Exception("The stack is full"));
         }
@@ -64,46 +64,34 @@ public class MyStack<T> {
         if(!isEmpty()){
             MyNodeS temp = topNode;
             topNode = topNode.getNext();
+            length--;
             return temp;
         } else {
             throw (new Exception("Nothing to pop, the stack is empty"));
         }
     }
-    /*
-    * The following table shows the different values of the top.
-    * -1  ... it shows the stack is empty
-    * 0   ... the stack has only one element
-    * N-1 ... the stack is full
-    * N   ... the stack is overflow
-    * */
-    public int top() {
-        if(!isEmpty()){
-            return -1;
-        } else if(length == 1){
-            return 0;
-        } else if(isFull()){
-            return length-1;
-        } else {
-            return length;
-        }
+    public MyNodeS top() {
+        return topNode;
     }
     public void print() throws Exception {
-        if(!isEmpty()){
+        if(length > 0){
             MyNodeS temp = topNode;
             for (int i = 0; i < length; i++){
-                System.out.print(temp + " ");
+                System.out.println(temp + " ");
                 temp = temp.getNext();
             }
         } else {
             throw (new Exception("Nothing to print, the stack is empty"));
         }
-
     }
+
+
     public void delete() throws Exception {
         if(!isEmpty()){
-            while(!isEmpty()){
+            while(length > 0){
                 pop();
             }
+            length = 0;
         } else {
             throw (new Exception("Nothing to delete, the stack is empty"));
         }
