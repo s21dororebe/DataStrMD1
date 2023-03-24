@@ -18,7 +18,7 @@ public class MyStack<T> {
     //CONSTRUCTORS
     //no argument constructor
     public MyStack(){
-        MyNodeS topNode = new MyNodeS<>(null);
+        setTopNode(null);
         length++;
     }
     //TOSTRING
@@ -35,7 +35,7 @@ public class MyStack<T> {
             MyStack temp = new MyStack();
             return false;
         } catch (OutOfMemoryError e){
-            throw new OutOfMemoryError("Unable to allocate more memory for the stack");
+            return true;
         }
     }
     public boolean isEmpty(){
@@ -60,12 +60,11 @@ public class MyStack<T> {
             throw (new Exception("The stack is full"));
         }
     }
-    public MyNodeS pop() throws Exception {
+    public void pop() throws Exception {
         if(!isEmpty()){
             MyNodeS temp = topNode;
             topNode = topNode.getNext();
             length--;
-            return temp;
         } else {
             throw (new Exception("Nothing to pop, the stack is empty"));
         }
@@ -84,8 +83,6 @@ public class MyStack<T> {
             throw (new Exception("Nothing to print, the stack is empty"));
         }
     }
-
-
     public void delete() throws Exception {
         if(!isEmpty()){
             while(length > 0){

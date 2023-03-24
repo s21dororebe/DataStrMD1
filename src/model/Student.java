@@ -1,13 +1,13 @@
 package model;
 
+import java.util.Objects;
+
 public class Student extends Person{
-	//1. variables 
 	private long id;
 	private Faculty faculty;
 
 	private static long studentCounter = 0;
 
-	//2. getters and setters
 	public long getId() {
 		return id;
 	}
@@ -20,22 +20,15 @@ public class Student extends Person{
 		studentCounter++;
 	}
 	public void setFaculty(Faculty inputFaculty) {
-		if(inputFaculty!=null) {
-			faculty = inputFaculty;
-		}
-		else
-		{
-			faculty = Faculty.other;
-		}
+		faculty = Objects.requireNonNullElse(inputFaculty, Faculty.other);
 	}
 
 	public Student()
 	{
-		super(); //will call Person();
+		super();
 		setId();
 		setFaculty(Faculty.other);
 	}
-
 	//args constructor
 	public Student(String name, String surname, Faculty faculty, String personCode ) {
 		super(name, surname, personCode);
@@ -43,17 +36,9 @@ public class Student extends Person{
 		setFaculty(faculty);
 	}
 
-	//Student [id=0, name=Jānis, surname=Bērziņš utt
-/*	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", faculty=" + faculty
-				+ ", personCode=" + personCode + "]";
-	}
-	*/
-	//4. toString
 	//0: Jānis Bērziņš, 121290-12345, ITF
 	public String toString() {
 		return "" + super.toString();
 	}
-	//5. additional functions
+
 }

@@ -2,12 +2,19 @@ package service;
 
 import datastr.MyNodeS;
 import datastr.MyStack;
-
-import model.Student;
 import model.Faculty;
+import model.Student;
 
-public class MainService {
-    public static void main(String[] args) throws Exception {
+/*
+* Papildināt MainService klasi, uzrakstot funkciju, kura veiks JAVA koda sintakses pārbaudi,
+* skatoties iekavu secību un to tipu atbilstību.
+* Funkcijai jānolasa *. java teksta fails un uz ekrāna jāizvada informācija par to,
+* kurā *.java teksta faila rindā varētu būt sintakses kļūda, kura radusies neatbilstošo iekavu dēļ.
+* Trīs *.java koda failu piemēri ir ievietoti moodlē (0.5 balles).
+* */
+
+public class MainService1 {
+    public static void main(String[] args) {
         MyNodeS number1 = new MyNodeS(20);
         MyNodeS number2 = new MyNodeS(30);
         MyNodeS number3 = new MyNodeS(40);
