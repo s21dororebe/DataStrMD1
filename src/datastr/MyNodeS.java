@@ -3,8 +3,6 @@ package datastr;
 public class MyNodeS<T> {
     private T data; //mainīgais, kurā glabājas vērtība
     private MyNodeS next; //norāde uz nākamo elementu
-//    private MyNodeS previous; //mainīgais kā norāde uz iepriekšējo mezglu
-
     //GETTERS
     public T getData() {
         return data;
@@ -12,9 +10,6 @@ public class MyNodeS<T> {
     public MyNodeS getNext() {
         return next;
     }
-//    public MyNodeS getPrevious() {
-//        return previous;
-//    }
     //SETTERS
     public void setData(T inputData) {
         if(inputData!=null){
@@ -22,14 +17,14 @@ public class MyNodeS<T> {
         } else {
             data = (T) new Object();
         }
-
     }
-    public void setNext(MyNodeS inputNext) {
-        next = inputNext;
+    public void setNext(MyNodeS inputNext) throws Exception {
+        if(inputNext!=null){
+            next = inputNext;
+        } else {
+            throw (new Exception("The input element is null"));
+        }
     }
-//    public void setPrevious(MyNodeS inputPrevious) {
-//        previous = inputPrevious;
-//    }
     //CONSTRUCTORS
     //argument constructor
     public MyNodeS(T data){
@@ -40,5 +35,4 @@ public class MyNodeS<T> {
     public String toString(){
         return "" + data;
     }
-
 }

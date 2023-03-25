@@ -22,13 +22,20 @@ public class MyNodeD<T> {
         } else {
             data = (T) new Object();
         }
-
     }
-    public void setNext(MyNodeD inputNext) {
-        next = inputNext;
+    public void setNext(MyNodeD inputNext) throws Exception {
+        if(inputNext!=null){
+            next = inputNext;
+        } else {
+            throw (new Exception("The input element is null"));
+        }
     }
-    public void setPrevious(MyNodeD inputPrevious) {
-        previous = inputPrevious;
+    public void setPrevious(MyNodeD inputPrevious) throws Exception {
+        if(inputPrevious!=null){
+            previous = inputPrevious;
+        } else {
+            throw (new Exception("The input element is null"));
+        }
     }
     //CONSTRUCTORS
     //argument constructor

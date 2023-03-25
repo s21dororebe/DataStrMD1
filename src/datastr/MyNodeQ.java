@@ -18,10 +18,13 @@ public class MyNodeQ<T> {
         } else {
             data = (T) new Object();
         }
-
     }
-    public void setNext(MyNodeQ inputNext) {
-        next = inputNext;
+    public void setNext(MyNodeQ inputNext) throws Exception {
+        if(inputNext!=null){
+            next = inputNext;
+        } else {
+            throw (new Exception("The input element is null"));
+        }
     }
     //CONSTRUCTORS
     //argument constructor

@@ -48,20 +48,18 @@ public class MyQueue<T> {
         if(isFull()){
             throw (new Exception("The queue is full"));
         }
-        MyNodeQ temp = new MyNodeQ(element);
         if (rearNode == null) {
-            setFrontNode(temp);
-            setRearNode(temp);
+            setFrontNode(element);
+            setRearNode(element);
         }
-        rearNode.setNext(temp);
-        setRearNode(temp);
+        rearNode.setNext(element);
+        setRearNode(element);
         length++;
     }
     public void dequeue() throws Exception {
         if (isEmpty()) {
             throw (new Exception("The queue is empty"));
         }
-//        MyNodeQ temp = getFrontNode();
         setFrontNode(frontNode.getNext());
         if (isEmpty())
             setRearNode(null);
