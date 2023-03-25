@@ -1,14 +1,14 @@
 package datastr;
 
-/*
-* Elementi tiek pievienot aizmugurē (rear);
-* Elementi tiek izņemti no priekšpuses (front)
-* */
+//I was stuck with enqueue() and dequeue(), so I was using this website
+//https://www.geeksforgeeks.org/queue-linked-list-implementation/
 
-public class MyQueue <T> {
+//TODO checks
+
+public class MyQueue<T> {
     MyNodeQ frontNode;
     MyNodeQ rearNode;
-    int length = -1;
+    int length;
 
     public MyNodeQ getFrontNode() {
         return frontNode;
@@ -16,17 +16,12 @@ public class MyQueue <T> {
     public MyNodeQ getRearNode() {
         return rearNode;
     }
-    public int getLength() {
-        return length;
-    }
 
-    //delete from front
-    public void setFrontNode(MyNodeQ frontNode) {
-        this.frontNode = frontNode;
+    public void setFrontNode(MyNodeQ inputFrontNode) {
+        frontNode = inputFrontNode;
     }
-    //add from rear
-    public void setRearNode(MyNodeQ rearNode) {
-        this.rearNode = rearNode;
+    public void setRearNode(MyNodeQ inputRearNode) {
+        rearNode = inputRearNode;
     }
 
     public MyQueue(){
@@ -44,46 +39,44 @@ public class MyQueue <T> {
         }
     }
     public boolean isEmpty(){
-        return length == 0;
+        return frontNode == null;
     }
     public int howManyElements(){
         return length;
     }
-
-    public void enqueue(MyNodeQ inputElement) throws Exception {
-        if(!isFull()){
-            if(isEmpty()) {
-                setFrontNode(inputElement);
-                setRearNode(inputElement);
-                length++;
-            } else {
-                setRearNode(inputElement);
-                frontNode.setNext(getRearNode());
-                length++;
-            }
-        } else {
-            throw (new Exception("The stack is full"));
+    public void enqueue(MyNodeQ element) throws Exception {
+        if(isFull()){
+            throw (new Exception("The queue is full"));
         }
+        MyNodeQ temp = new MyNodeQ(element);
+        if (rearNode == null) {
+            setFrontNode(temp);
+            setRearNode(temp);
+        }
+        rearNode.setNext(temp);
+        setRearNode(temp);
+        length++;
     }
     public void dequeue() throws Exception {
-        if(!isEmpty()){
-            MyNodeQ temp = frontNode;
-            frontNode = frontNode.getNext();
-            length--;
-        } else {
-            throw (new Exception("Nothing to pop, the stack is empty"));
+        if (isEmpty()) {
+            throw (new Exception("The queue is empty"));
         }
+//        MyNodeQ temp = getFrontNode();
+        setFrontNode(frontNode.getNext());
+        if (isEmpty())
+            setRearNode(null);
+        length--;
     }
     public void print() throws Exception {
-        if(length > 0){
-            MyNodeQ temp = getFrontNode();
-            for(int i = 0; i < length; i++){
+        if (frontNode != null){
+            MyNodeQ temp = frontNode;
+            while(temp != null){
                 System.out.print(temp + " ");
                 temp = temp.getNext();
             }
             System.out.println();
         } else {
-            throw (new Exception("Nothing to print, the stack is empty"));
+            throw (new Exception("Nothing to print, the queue is empty"));
         }
     }
     public void delete() throws Exception {
@@ -93,7 +86,8 @@ public class MyQueue <T> {
             }
             length = 0;
         } else {
-            throw (new Exception("Nothing to delete, the stack is empty"));
+            throw (new Exception("Nothing to delete, the queue is empty"));
         }
     }
+
 }

@@ -5,7 +5,10 @@ import datastr.MyStack;
 import model.Faculty;
 import model.Student;
 
+//TODO stylize the output code
+
 /*
+* TODO
 * Papildināt MainService klasi, uzrakstot funkciju, kura veiks JAVA koda sintakses pārbaudi,
 * skatoties iekavu secību un to tipu atbilstību.
 * Funkcijai jānolasa *. java teksta fails un uz ekrāna jāizvada informācija par to,

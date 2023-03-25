@@ -1,5 +1,7 @@
 package datastr;
 
+//TODO checks
+
 public class MyStack<T> {
     private MyNodeS topNode;
     private int length = -1;
