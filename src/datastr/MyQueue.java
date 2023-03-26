@@ -6,9 +6,9 @@ package datastr;
 //TODO checks
 
 public class MyQueue<T> {
-    MyNodeQ frontNode;
-    MyNodeQ rearNode;
-    int length;
+    private MyNodeQ frontNode;
+    private MyNodeQ rearNode;
+    private int length;
 
     public MyNodeQ getFrontNode() {
         return frontNode;

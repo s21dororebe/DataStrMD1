@@ -24,28 +24,21 @@ public class MyNodeD<T> {
         }
     }
     public void setNext(MyNodeD inputNext) throws Exception {
-        if(inputNext!=null){
-            next = inputNext;
-        } else {
-            throw (new Exception("The input element is null"));
-        }
+        next = inputNext;
     }
-    public void setPrevious(MyNodeD inputPrevious) throws Exception {
-        if(inputPrevious!=null){
-            previous = inputPrevious;
-        } else {
-            throw (new Exception("The input element is null"));
-        }
+    public void setPrevious(MyNodeD inputPrevious)  {
+        previous = inputPrevious;
     }
     //CONSTRUCTORS
     //argument constructor
-    public MyNodeD(T data){
+    public MyNodeD(T data) {
         setData(data);
+        previous = null;
+        next = null;
     }
     //TOSTRING
     @Override
     public String toString(){
         return "" + data;
     }
-
 }

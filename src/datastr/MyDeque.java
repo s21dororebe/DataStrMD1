@@ -3,9 +3,9 @@ package datastr;
 //TODO checks (if not null)
 
 public class MyDeque<T> {
-    MyNodeD frontNode;
-    MyNodeD rearNode;
-    int length;
+    private MyNodeD frontNode;
+    private MyNodeD rearNode;
+    private int length;
 
     public MyNodeD getFrontNode() {
         return frontNode;
@@ -40,122 +40,83 @@ public class MyDeque<T> {
         return length;
     }
 
-    /*
-     * Insertion at Front end : (enqueueAtFront)
-     * 1. Allocate space for a newNode of doubly linked list.
-     * 2. IF newNode == NULL, then
-     * 3.     print "Overflow"
-     * 4. ELSE
-     * 5.     IF front == NULL, then
-     * 6.         rear = front = newNode
-     * 7.     ELSE
-     * 8.         newNode->next = front
-     * 9.       front->prev = newNode
-     * 10.        front = newNode
-     * */
     public void enqueueAtFront(MyNodeD element) throws Exception {
         if(isFull()){
             throw (new Exception("The deque is full"));
-        }
-        if(element == null){
-            throw (new Exception("The input element is null"));
-        }
-        if(frontNode == null){
-            setFrontNode(element);
-            setRearNode(element);
         } else {
-            element.setNext(getFrontNode());
-            frontNode.setPrevious(element);
-            setFrontNode(element);
+            MyNodeD newNode = new MyNodeD(element);
+            if(element == null){
+                throw (new Exception("The input element is null"));
+            } else {
+                if(frontNode == null){
+                    setFrontNode(newNode);
+                    setRearNode(newNode);
+                } else {
+                    newNode.setNext(getFrontNode());
+                    frontNode.setPrevious(newNode);
+                    setFrontNode(newNode);
+                }
+                length++;
+            }
         }
-        length++;
-
     }
-    /*
-     * Insertion at Rear end :
-     * 1. Allocate space for a newNode of doubly linked list.
-     * 2. IF newNode == NULL, then
-     * 3.     print "Overflow"
-     * 4. ELSE
-     * 5.     IF rear == NULL, then
-     * 6.         front = rear = newNode
-     * 7.     ELSE
-     * 8.         newNode->prev = rear
-     * 9.       rear->next = newNode
-     * 10.        rear = newNode
-     * */
     public void enqueueAtEnd(MyNodeD element) throws Exception {
         if(isFull()){
             throw (new Exception("The deque is full"));
-        }
-        if(element == null){
-            throw (new Exception("The input element is null"));
-        }
-        if(rearNode == null){
-            setFrontNode(element);
-            setRearNode(element);
         } else {
-            element.setPrevious(rearNode);
-            rearNode.setNext(element);
-            setRearNode(element);
-        }
-        length++;
-    }
-    /*
-    * Deletion from Front end :
-    * 1. IF front == NULL
-    * 2.     print "Underflow"
-    * 3. ELSE
-    * 4.     Initialize temp = front
-    * 5.     front = front->next
-    * 6.     IF front == NULL
-    * 7.         rear = NULL
-    * 8.     ELSE
-    * 9.         front->prev = NULL
-    * 10     Deallocate space for temp
-    * */
-    public void dequeueFromFront() throws Exception {
-        if (isEmpty()) {
-            throw (new Exception("The deque is empty"));
-        }
-        if(frontNode == null){
-            throw (new Exception("The input element is null"));
-        }
-        setFrontNode(frontNode.getNext());
-        if(frontNode == null){
-            setRearNode(null);
-        } else {
-            frontNode.setPrevious(null);
-        }
-        length--;
-    }
-    /*
-    * Deletion from Rear end :
-    * 1. IF front == NULL
-    * 2.     print "Underflow"
-    * 3. ELSE
-    * 4.     Initialize temp = rear
-    * 5.     rear = rear->prev
-    * 6.     IF rear == NULL
-    * 7.         front = NULL
-    * 8.     ELSE
-    * 9.         rear->next = NULL
-    * 10     Deallocate space for temp
-    * */
-    public void dequeueFromEnd() throws Exception {
-        if (isEmpty()) {
-            throw (new Exception("The deque is empty"));
-        }
-        if(frontNode == null){
-            throw (new Exception("The input element is null"));
-        }
-            setRearNode(rearNode.getPrevious());
-            if(rearNode == null){
-                setFrontNode(null);
+            MyNodeD newNode = new MyNodeD(element);
+            if(element == null){
+                throw (new Exception("The input element is null"));
             } else {
-                rearNode.setNext(null);
+                if(rearNode == null){
+                    setFrontNode(newNode);
+                    setRearNode(newNode);
+                } else {
+                    newNode.setPrevious(rearNode);
+                    rearNode.setNext(newNode);
+                    setRearNode(newNode);
+                }
+                length++;
             }
+        }
+    }
+    public void dequeueFromFront() throws Exception {
+//        if (isEmpty()) {
+//            throw (new Exception("The deque is empty"));
+//        } else {
+//            MyNodeD temp = getFrontNode();
+//            setFrontNode(frontNode.getNext());
+//            if(frontNode == null){
+//                setRearNode(null);
+//            } else {
+//                frontNode.setPrevious(null);
+//            }
+//            length--;
+//        }
+        if (isEmpty())
+            System.out.print("UnderFlow\n");
+        else {
+            MyNodeD temp = getFrontNode();
+            setFrontNode(frontNode.getNext());
+            if (frontNode == null)
+                setRearNode(null);
+            else
+                frontNode.setPrevious(null);
             length--;
+        }
+    }
+    public void dequeueFromEnd() throws Exception {
+        if (isEmpty())
+            System.out.print("UnderFlow\n");
+        else {
+            MyNodeD temp = getRearNode();
+            setRearNode(rearNode.getPrevious());
+            if (rearNode == null)
+                setFrontNode(null);
+            else
+                rearNode.setNext(null);
+            length--;
+        }
 
     }
     public void print() throws Exception {
