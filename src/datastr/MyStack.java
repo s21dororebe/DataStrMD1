@@ -1,7 +1,5 @@
 package datastr;
 
-//TODO checks
-
 public class MyStack<T> {
     private MyNodeS topNode;
     private int length = -1;
@@ -64,7 +62,6 @@ public class MyStack<T> {
     }
     public void pop() throws Exception {
         if(!isEmpty()){
-            MyNodeS temp = topNode;
             topNode = topNode.getNext();
             length--;
         } else {

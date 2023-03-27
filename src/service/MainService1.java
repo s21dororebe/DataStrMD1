@@ -1,17 +1,15 @@
 package service;
 
-//TODO stylize the output code
-
 import datastr.MyNodeS;
 import datastr.MyStack;
+import model.Faculty;
+import model.Student;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class MainService1 {
-    public static void main(String[] args) throws FileNotFoundException {
-        /*
+    public static void main(String[] args)  {
         MyNodeS number1 = new MyNodeS(20);
         MyNodeS number2 = new MyNodeS(30);
         MyNodeS number3 = new MyNodeS(40);
@@ -28,86 +26,108 @@ public class MainService1 {
         MyStack <Student> students = new MyStack<>();
         try {
             System.out.println("Stack with numbers");
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            printStatus(numbers);
             System.out.println("Is this stack full? ==> " + numbers.isFull());
             System.out.println("Is this stack empty? ==> " + numbers.isEmpty());
-            System.out.println("Adding new elements:");
 
+            System.out.println();
+            System.out.println("Adding new elements:");
             numbers.push(number1);
-            numbers.print(); // 20
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
 
             numbers.push(number2);
-            numbers.print(); //20 30
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
 
             numbers.push(number3);
-            numbers.print(); // 20 30 40
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
 
             numbers.push(number4);
-            numbers.print(); // 20 30 40 50
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
 
             numbers.push(number5);
-            numbers.print(); // 20 30 40 50 60
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
             System.out.println("Is this stack full? ==> " + numbers.isFull());
+            System.out.println();
 
             System.out.println("Pop element:");
             numbers.pop();
-            numbers.print(); // 30 40 50 60
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
+
             numbers.pop();
-            numbers.print(); //40 50 60
-            System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
+            System.out.println("Stack with numbers:");
+            printInfo(numbers);
+
             System.out.println("Delete stack:");
             numbers.delete();
             System.out.println("top(): " + numbers.top() + ", count of elements: " + numbers.howManyElements());
             System.out.println("Is this stack empty? ==> " + numbers.isEmpty());
 
+            System.out.println();
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println();
+
             System.out.println("Stack with students");
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            printStatus(students);
             System.out.println("Is this stack full? ==> " + students.isFull());
             System.out.println("Is this stack empty? ==> " + students.isEmpty());
-            System.out.println("Adding new elements:");
 
+            System.out.println();
+            System.out.println("Adding new elements:");
             students.push(student1);
-            students.print();
-            System.out.println("top(): "  + students.top() + ", count of elements: " + students.howManyElements());
+            System.out.println("Stack with students:");
+            printInfo(students);
 
             students.push(student2);
-            students.print();
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            System.out.println("Stack with students:");
+            printInfo(students);
 
             students.push(student3);
-            students.print();
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            System.out.println("Stack with students:");
+            printInfo(students);
 
             System.out.println("Pop element:");
             students.pop();
-            students.print();
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            System.out.println("Stack with students:");
+            printInfo(students);
+
             students.pop();
-            students.print();
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            System.out.println("Stack with students:");
+            printInfo(students);
+
             System.out.println("Delete stack:");
             students.delete();
-            System.out.println("top(): " + students.top() + ", count of elements: " + students.howManyElements());
+            printStatus(students);
             System.out.println("Is this stack empty? ==> " + students.isEmpty());
+
+            System.out.println();
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println();
+
+            System.out.println("Papildfunkcija:");
+            String file1 = "src/resources/UserController.java";
+            checkSyntax(file1);
+            String file2 = "src/resources/UserServiceImplTest.java";
+            checkSyntax(file2);
+
         } catch (Exception e) {
             System.out.println(e);
         }
-        */
-        String file1 = "src/resources/UserController.java";
-        checkSyntax(file1);
-        String file2 = "src/resources/UserServiceImplTest.java";
-        checkSyntax(file2);
+    }
+
+    private static void printStatus(MyStack stackWithElements) {
+        System.out.println("top(): " + stackWithElements.top() + ", count of elements: " + stackWithElements.howManyElements());
     }
 
     /*
     * Man ir ļoti grūti ar file lasīšanu, tāpēc es izmantoju chatgpt, lai uzrakstītu šo funkciju
-    * es sapratu kā tas */
+    * es sapratu kā tas strādā un papildināju to ar MyStack
+    * */
 
     public static void checkSyntax(String path) {
         try {
@@ -147,5 +167,11 @@ public class MainService1 {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void printInfo(MyStack stackWithElements) throws Exception {
+        stackWithElements.print();
+        System.out.println("top(): " + stackWithElements.top() + ", count of elements: " + stackWithElements.howManyElements());
+        System.out.println();
     }
 }
