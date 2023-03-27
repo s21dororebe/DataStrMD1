@@ -3,8 +3,6 @@ package datastr;
 //I was stuck with enqueue() and dequeue(), so I was using this website
 //https://www.geeksforgeeks.org/queue-linked-list-implementation/
 
-//TODO checks
-
 public class MyQueue<T> {
     private MyNodeQ frontNode;
     private MyNodeQ rearNode;
