@@ -1,23 +1,17 @@
 package service;
 
-import datastr.MyNodeS;
-import datastr.MyStack;
-import model.Faculty;
-import model.Student;
-
 //TODO stylize the output code
 
-/*
-* TODO
-* Papildināt MainService klasi, uzrakstot funkciju, kura veiks JAVA koda sintakses pārbaudi,
-* skatoties iekavu secību un to tipu atbilstību.
-* Funkcijai jānolasa *. java teksta fails un uz ekrāna jāizvada informācija par to,
-* kurā *.java teksta faila rindā varētu būt sintakses kļūda, kura radusies neatbilstošo iekavu dēļ.
-* Trīs *.java koda failu piemēri ir ievietoti moodlē (0.5 balles).
-* */
+import datastr.MyNodeS;
+import datastr.MyStack;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class MainService1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        /*
         MyNodeS number1 = new MyNodeS(20);
         MyNodeS number2 = new MyNodeS(30);
         MyNodeS number3 = new MyNodeS(40);
@@ -103,6 +97,55 @@ public class MainService1 {
             System.out.println("Is this stack empty? ==> " + students.isEmpty());
         } catch (Exception e) {
             System.out.println(e);
+        }
+        */
+        String file1 = "src/resources/UserController.java";
+        checkSyntax(file1);
+        String file2 = "src/resources/UserServiceImplTest.java";
+        checkSyntax(file2);
+    }
+
+    /*
+    * Man ir ļoti grūti ar file lasīšanu, tāpēc es izmantoju chatgpt, lai uzrakstītu šo funkciju
+    * es sapratu kā tas */
+
+    public static void checkSyntax(String path) {
+        try {
+            BufferedReader bReader = new BufferedReader(new FileReader(path));
+                String line;
+                MyStack<Character> stackToCheck = new MyStack();
+                int lineNumber = 0;
+                while ((line = bReader.readLine()) != null) {
+                    lineNumber++;
+                    for (int i = 0; i < line.length(); i++) {
+                        char ch = line.charAt(i);
+                        if (ch == '(' || ch == '{' || ch == '[') {
+                            stackToCheck.push(new MyNodeS(ch));
+                        } else if (ch == ')' || ch == '}' || ch == ']') {
+                            if (stackToCheck.isEmpty()) {
+                                System.out.println("Error: Extra closing bracket at line " + lineNumber + ", position " + (i+1));
+                                return;
+                            }
+                            MyNodeS top = stackToCheck.top();
+                            if ((top.equals('(') && ch == ')')
+                                    || (top.equals('{') && ch == '}')
+                                    || (top.equals('[') && ch == ']')) {
+                                stackToCheck.pop();
+                            } else {
+                                System.out.println("Error: Mismatched brackets at line " + lineNumber + ", position " + (i+1));
+                                return;
+                            }
+                        }
+                    }
+                }
+                if (!stackToCheck.isEmpty()) {
+                    MyNodeS top = stackToCheck.top();
+                    System.out.println("Error: Extra opening bracket of type " + top + " at end of file");
+                } else {
+                    System.out.println("Syntax check passed successfully.");
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

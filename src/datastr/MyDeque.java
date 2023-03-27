@@ -1,7 +1,5 @@
 package datastr;
 
-//TODO checks (if not null)
-
 public class MyDeque<T> {
     private MyNodeD frontNode;
     private MyNodeD rearNode;
@@ -124,11 +122,10 @@ public class MyDeque<T> {
             MyNodeD temp = frontNode;
             int tempLength = length;
             while(tempLength > 0){
-                System.out.print(temp + " ");
+                System.out.println(temp);
                 temp = temp.getNext();
                 tempLength--;
             }
-            System.out.println();
         } else {
             throw (new Exception("Nothing to print, the queue is empty"));
         }

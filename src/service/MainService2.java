@@ -2,23 +2,17 @@ package service;
 
 import datastr.MyNodeQ;
 import datastr.MyQueue;
-import model.Faculty;
-import model.Student;
+
+import java.util.Random;
 
 //TODO stylize the output code
 //TODO try catch
 
-/*
-* TODO
-* Papildināt MainService klasi, uzrakstot funkciju,
-* kurā tiek ģenerēti telefona numuri un tiek simulēta zvanīšana avārijas dienestam.
-* Katrs zvans (telefona numurs) tiek ievietots rindā un gaida savu kārtu, lai tiktu izpildīts.
-* Telefona numura ievietošanas un izņemšanas laiku būtu vēlams ģenerēt, izmantojot Thread.sleep() funkciju,
-* tādējādi simulējot atšķirīgu laiku gan zvana pienākšanai, gan zvana apkalpošanai (0.5 balles);
-* */
 
 public class MainService2 {
+
     public static void main(String[] args) throws Exception {
+        /*
         MyQueue numbers = new MyQueue();
         MyNodeQ number1 = new MyNodeQ(10);
         MyNodeQ number2 = new MyNodeQ(20);
@@ -91,6 +85,63 @@ public class MainService2 {
         System.out.println("Delete");
         students.delete();
         System.out.println("How many elements: " + students.howManyElements());
+*/
+        MyQueue phoneNumbers = new MyQueue();
+        callME(phoneNumbers);
+        System.out.println("Phone numbers:");
+        phoneNumbers.print();
+    }
+    private static final Random rand = new Random();
+    public static void callME(MyQueue numbersArray){
+        for(int i = 0; i < 10; i++){
+            try {
+                Thread.sleep(rand.nextInt(2000));
+                int number = generatePhoneNumber();
+                MyNodeQ generatedNumber = new MyNodeQ(number);
+                System.out.println(generatedNumber);
+                numbersArray.enqueue(generatedNumber);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }
+    public static int generatePhoneNumber(){
+        int result = 2;
+        Random rand = new Random();
+        for(int i = 0; i < 7; i++){
+            double temp = rand.nextDouble() * 9;
+            result = result * 10 + (int)temp;
+        }
+        return result;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
