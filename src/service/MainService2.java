@@ -98,6 +98,8 @@ public class MainService2 {
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println();
 
+            System.out.println("Papildfunkcija:");
+
             MyQueue phoneNumbers = new MyQueue();
             callME(phoneNumbers);
             System.out.println("Phone numbers:");

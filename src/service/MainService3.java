@@ -1,17 +1,16 @@
 package service;
 
-//TODO stylize the output code
-//TODO try catch
-
 import datastr.MyDeque;
 import datastr.MyNodeD;
+import model.Faculty;
+import model.Student;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 public class MainService3 {
-    public static void main(String[] args) throws Exception {
-        /*
+    public static void main(String[] args) {
+
         MyDeque numbers = new MyDeque<>();
         MyNodeD number1 = new MyNodeD(10);
         MyNodeD number2 = new MyNodeD(20);
@@ -30,23 +29,29 @@ public class MainService3 {
         try {
 //            System.out.println("dequeue");
 //            numbers.dequeueFromEnd();
+            System.out.println("Deque with numbers");
+            System.out.println("Is this stack full? ==> " + numbers.isFull());
+            System.out.println("Is this stack empty? ==> " + numbers.isEmpty());
+            System.out.println();
 
             System.out.print("enqueue at the front number1");
             numbers.enqueueAtFront(number1);
             System.out.println();
             numbers.print();
+            System.out.println();
 
             System.out.print("enqueue at the front number2");
             numbers.enqueueAtFront(number2);
             System.out.println();
             numbers.print();
-
             System.out.println("How many elements: " + numbers.howManyElements());
+            System.out.println();
 
             System.out.print("dequeue from the end");
             numbers.dequeueFromEnd();
             System.out.println();
             numbers.print();
+            System.out.println();
 
             System.out.print("enqueue to the end number 3, 4, 5");
             numbers.enqueueAtEnd(number3);
@@ -54,64 +59,80 @@ public class MainService3 {
             numbers.enqueueAtEnd(number5);
             System.out.println();
             numbers.print();
-
             System.out.println("How many elements: " + numbers.howManyElements());
+            System.out.println();
 
             System.out.print("dequeue at front");
             numbers.dequeueFromFront();
             System.out.println();
             numbers.print();
-
             System.out.println("How many elements: " + numbers.howManyElements());
+            System.out.println();
+
             System.out.println("Delete");
             numbers.delete();
             System.out.println("How many elements: " + numbers.howManyElements());
+            System.out.println("Is this stack empty? ==> " + students.isEmpty());
 
+            System.out.println();
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println();
+
+            System.out.println("Deque with students");
+            System.out.println("Is this stack full? ==> " + students.isFull());
+            System.out.println("Is this stack empty? ==> " + students.isEmpty());
+            System.out.println();
 
             System.out.print("enqueue at the front student1");
             students.enqueueAtFront(student1);
             System.out.println();
             students.print();
+            System.out.println();
 
             System.out.print("enqueue at the front student2");
             students.enqueueAtFront(student2);
             System.out.println();
             students.print();
-
             System.out.println("How many elements: " + students.howManyElements());
+            System.out.println();
 
             System.out.print("dequeue from the end");
             students.dequeueFromEnd();
             System.out.println();
             students.print();
+            System.out.println();
 
             System.out.print("enqueue to the end student 3");
             students.enqueueAtEnd(student3);
+
             System.out.println();
             students.print();
-
             System.out.println("How many elements: " + students.howManyElements());
+            System.out.println();
 
             System.out.print("dequeue at front");
             students.dequeueFromFront();
             System.out.println();
             students.print();
-
             System.out.println("How many elements: " + students.howManyElements());
+            System.out.println();
+
             System.out.println("Delete");
             students.delete();
             System.out.println("How many elements: " + students.howManyElements());
+            System.out.println("Is this stack empty? ==> " + students.isEmpty());
+
+            System.out.println();
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.println();
+
+            System.out.println("Papildfunkcija:");
+            browserHistory();
         } catch (Exception e) {
             System.out.println(e);
-        }*/
-        browserHistory();
+        }
+
     }
-    /*
-     * Papildināt MainService klasi, uzrakstot funkciju, kurā tiek simulēta interneta pārlūka vēstures uzkrāšana.
-     * Funkcijā nepieciešams ļaut lietotājam ievadīt konsolē dažādas url adreses, kuras saglabā dekā deka priekšpusē.
-     * Deka izmērs ir 10. Ja deks tiek pārpildīts, tad no aizmugures jāizņem elementi, lai atbrīvotu vietu dekā.
-     * Ja konsolē tiek ievadīta vērtība 1 (nevis url) adrese, tad tiek izprintēts un izdzēsts pirmais deka elements (0.5 balles).
-     * */
 
     public static void browserHistory() throws Exception {
         MyDeque<String> history = new MyDeque();

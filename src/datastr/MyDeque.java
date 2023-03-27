@@ -79,20 +79,8 @@ public class MyDeque<T> {
         }
     }
     public void dequeueFromFront() throws Exception {
-//        if (isEmpty()) {
-//            throw (new Exception("The deque is empty"));
-//        } else {
-//            MyNodeD temp = getFrontNode();
-//            setFrontNode(frontNode.getNext());
-//            if(frontNode == null){
-//                setRearNode(null);
-//            } else {
-//                frontNode.setPrevious(null);
-//            }
-//            length--;
-//        }
         if (isEmpty())
-            System.out.print("UnderFlow\n");
+            throw (new Exception("The deque is empty"));
         else {
             MyNodeD temp = getFrontNode();
             setFrontNode(frontNode.getNext());
@@ -105,7 +93,7 @@ public class MyDeque<T> {
     }
     public void dequeueFromEnd() throws Exception {
         if (isEmpty())
-            System.out.print("UnderFlow\n");
+            throw (new Exception("The deque is empty"));
         else {
             MyNodeD temp = getRearNode();
             setRearNode(rearNode.getPrevious());
@@ -134,7 +122,6 @@ public class MyDeque<T> {
         if(!isEmpty()){
             setRearNode(null);
             while (frontNode != null) {
-                MyNodeD temp = frontNode;
                 frontNode = frontNode.getNext();
             }
             length = 0;
